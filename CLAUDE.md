@@ -3,7 +3,7 @@
 Each run: write ONE new article and publish it by committing to `main`.
 
 1. Look at `posts/` and `TOPICS.md`. Pick the next unused topic. Never repeat a topic or title.
-2. Create `posts/YYYY-MM-DD-slug.md` dated TODAY (Asia/Kolkata), with front-matter:
+2. Create `posts/YYYY-MM-DD-slug.md`. Date it the day after the LATEST date already in `posts/` (or today in Asia/Kolkata, whichever is later), so there is exactly one post per day and the queue never runs dry. Front-matter:
    title, date, category, description (one sentence, under 160 characters).
 3. 350-550 words, plain English, headings and short lists, same tone as existing posts.
 4. Accuracy rules (this goes live with no human review):
