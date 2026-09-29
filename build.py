@@ -166,14 +166,24 @@ def page_contact():
 <div class="prose"><h2>Office</h2><p>{NAME}<br>{ADDRESS}</p>
 <p>Phone: <a href="tel:{PHONE_TEL}">{PHONE}</a><br>Email: <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 <p>If you have a notice or order, please send a copy with your message. Do not send confidential documents until an engagement is confirmed.</p></div>
-<form class="card" action="mailto:{EMAIL}" method="post" enctype="text/plain" id="contact-form">
+<form class="card" action="https://formsubmit.co/{EMAIL}" method="POST" id="contact-form">
+<input type="hidden" name="_subject" value="New enquiry from sarfaesiadvocates.com">
+<input type="hidden" name="_next" value="{SITE_URL}/thanks.html">
+<input type="hidden" name="_template" value="table">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 <label>Name<input name="name" required></label>
 <label>Email<input type="email" name="email" required></label>
 <label>Phone (optional)<input name="phone"></label>
 <label>Message<textarea name="message" rows="5" required></textarea></label>
 <button class="btn" type="submit">Send message</button>
-<p class="note">This form opens your email application. Replace it with Netlify Forms or Formspree after hosting (see README).</p>
+<p class="note">Please do not include confidential documents or details in this form. We will get back to you on the details you provide.</p>
 </form></section>"""
+
+
+def page_thanks():
+    return f"""<section class="page-head"><div class="wrap"><h1>Thank you</h1></div></section>
+<section class="wrap prose pad"><p>Your message has been sent. For anything urgent, please call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
+<p><a href="index.html">Back to home</a></p></section>"""
 
 
 def page_disclaimer():
@@ -225,6 +235,7 @@ def main():
     faq_body, faq_head = page_faq()
     write("faq.html", layout(f"FAQs | {NAME}", "Answers on SARFAESI limitation, pre-deposit, auctions and remedies.", faq_body, "faq.html", extra_head=faq_head))
     write("contact.html", layout(f"Contact | {NAME}", "Contact SARFAESI Advocates, Mission Road, Bengaluru.", page_contact(), "contact.html"))
+    write("thanks.html", layout(f"Thank you | {NAME}", "Message sent.", page_thanks(), "thanks.html"))
     write("disclaimer.html", layout(f"Disclaimer | {NAME}", "Bar Council of India disclaimer.", page_disclaimer(), "disclaimer.html"))
 
     cards = "".join(card(p, "../").replace('href="../blog/', 'href="') for p in live)
