@@ -1,0 +1,21 @@
+# Topic backlog (use in order, add new ones at the end)
+- SARFAESI vs Recovery of Debts Act: which route does a bank use and why
+- What counts as a "secured creditor" and "financial asset" under the Act
+- NPA classification and why it matters for a Section 13(2) notice
+- Possession notice under Rule 8: symbolic vs physical possession
+- Guarantors and SARFAESI: liability and defences
+- Sale of movable secured assets: how the Rules differ
+- Section 13(9): rights of joint financiers
+- Priority of secured creditors and Section 26E (Central Registry)
+- Role of asset reconstruction companies (ARCs)
+- Tenants and occupants in a SARFAESI possession
+- Stamp duty and registration of the sale certificate
+- Reserve price disputes: what evidence helps
+- Delay in bank action: effect on limitation
+- Multiple-bank (consortium) lending and enforcement
+- Interim relief in a Section 17 application: what deposits are asked
+- Costs and compensation when a bank acts wrongly (Section 17(3))
+- Home loan default: options before auction
+- MSME borrowers: RBI restructuring and SARFAESI
+- E-auction platforms: how bidding works and common pitfalls
+- Return of surplus sale proceeds to the borrower
