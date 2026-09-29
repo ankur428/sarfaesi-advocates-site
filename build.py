@@ -28,7 +28,7 @@ SITE_URL = "https://www.sarfaesiadvocates.com"   # change to the final domain
 NAME = "SARFAESI Advocates"
 PHONE = "08048067040"
 PHONE_TEL = "08048067040"
-EMAIL = "info@sarfaesiadvocates.com"
+EMAIL = "sarfaesiadvocates@gmail.com"
 ADDRESS = "No. 76, Kasturi Complex, 2nd Floor, Mission Road, Bengaluru 560027"
 from zoneinfo import ZoneInfo
 TODAY = dt.datetime.now(ZoneInfo('Asia/Kolkata')).date()
