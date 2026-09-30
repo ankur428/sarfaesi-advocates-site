@@ -1,6 +1,6 @@
 ---
 title: Received a Section 13(2) demand notice? What to do in the next 60 days
-date: 2026-10-01
+date: 2026-09-30
 category: Notices
 description: The sixty-day window after a SARFAESI demand notice is the borrower's best opportunity to object, negotiate and prepare.
 ---
