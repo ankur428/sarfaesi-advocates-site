@@ -1,6 +1,6 @@
 ---
 title: Appeal to the DRAT under Section 18: the pre-deposit requirement explained
-date: 2026-10-03
+date: 2026-10-01
 category: Litigation
 description: Who can appeal from a DRT order, the thirty-day limit and how the fifty per cent pre-deposit works.
 ---

@@ -1,6 +1,6 @@
 ---
 title: Right of redemption under Section 13(8): until when can a borrower clear the dues?
-date: 2026-10-07
+date: 2026-10-01
 category: Borrower rights
 description: How the 2016 amendment changed the deadline for redemption and why the date of publication of the auction notice matters.
 ---

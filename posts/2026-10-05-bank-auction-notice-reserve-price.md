@@ -1,6 +1,6 @@
 ---
 title: Bank auction under SARFAESI: notice, valuation and reserve price
-date: 2026-10-05
+date: 2026-10-01
 category: Auctions
 description: The procedural safeguards in Rules 8 and 9 of the Security Interest (Enforcement) Rules and how defects lead to challenges.
 ---

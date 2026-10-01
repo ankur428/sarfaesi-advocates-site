@@ -1,6 +1,6 @@
 ---
 title: Section 14 of the SARFAESI Act: how courts assist banks in taking possession
-date: 2026-10-04
+date: 2026-10-01
 category: Possession
 description: What a Section 14 application is, the timeline the magistrate follows and the limited role of the court at this stage.
 ---

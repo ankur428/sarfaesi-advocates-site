@@ -1,6 +1,6 @@
 ---
 title: SARFAESI vs the Recovery of Debts Act: which route does a bank use and why
-date: 2026-10-10
+date: 2026-10-01
 category: Recovery Routes
 description: How a bank chooses between enforcing security under SARFAESI and suing in the DRT under the RDB Act, and what each route means for a borrower.
 ---

@@ -1,6 +1,6 @@
 ---
 title: Can you go directly to the High Court against SARFAESI action?
-date: 2026-10-08
+date: 2026-10-01
 category: Litigation
 description: Why courts expect borrowers to use the DRT first and the narrow exceptions in which a writ petition is entertained.
 ---

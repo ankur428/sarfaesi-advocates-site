@@ -1,6 +1,6 @@
 ---
 title: Section 17 application before the DRT: the 45-day limit and what the Tribunal examines
-date: 2026-10-02
+date: 2026-10-01
 category: Litigation
 description: How to challenge SARFAESI action before the Debts Recovery Tribunal, the limitation period and the grounds usually taken.
 ---

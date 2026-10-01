@@ -1,6 +1,6 @@
 ---
 title: Buying property at a SARFAESI auction: a due-diligence checklist
-date: 2026-10-06
+date: 2026-10-01
 category: Auctions
 description: Practical checks an auction purchaser should complete before bidding on a bank-auctioned property.
 ---

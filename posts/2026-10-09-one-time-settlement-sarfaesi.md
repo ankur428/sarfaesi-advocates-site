@@ -1,6 +1,6 @@
 ---
 title: One-time settlement with a bank during SARFAESI proceedings: how to approach it
-date: 2026-10-09
+date: 2026-10-01
 category: Settlement
 description: Steps for negotiating an OTS with a lender and the legal safeguards to build into the settlement.
 ---

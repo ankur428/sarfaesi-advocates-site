@@ -1,6 +1,6 @@
 ---
 title: Who is a "secured creditor" and what is a "financial asset" under the SARFAESI Act?
-date: 2026-10-11
+date: 2026-10-01
 category: Basics
 description: Two definitions decide whether SARFAESI action is available at all: who counts as a secured creditor, and what counts as a financial asset.
 ---
