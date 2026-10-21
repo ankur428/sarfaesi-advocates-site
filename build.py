@@ -24,7 +24,7 @@ import markdown
 
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
-SITE_URL = "https://www.sarfaesiadvocates.com"   # change to the final domain
+SITE_URL = "https://sarfaesiadvocates.com"
 NAME = "SARFAESI Advocates"
 PHONE = "08048067040"
 PHONE_TEL = "08048067040"
