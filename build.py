@@ -166,11 +166,12 @@ def page_contact():
 <div class="prose"><h2>Office</h2><p>{NAME}<br>{ADDRESS}</p>
 <p>Phone: <a href="tel:{PHONE_TEL}">{PHONE}</a><br>Email: <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 <p>If you have a notice or order, please send a copy with your message. Do not send confidential documents until an engagement is confirmed.</p></div>
-<form class="card" action="https://formsubmit.co/{EMAIL}" method="POST" id="contact-form">
-<input type="hidden" name="_subject" value="New enquiry from sarfaesiadvocates.com">
-<input type="hidden" name="_next" value="{SITE_URL}/thanks.html">
-<input type="hidden" name="_template" value="table">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<form class="card" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+<input type="hidden" name="access_key" value="4397b2f2-ada9-4ef1-beb5-f6aedae4147f">
+<input type="hidden" name="subject" value="New enquiry from sarfaesiadvocates.com">
+<input type="hidden" name="from_name" value="SARFAESI Advocates website">
+<input type="hidden" name="redirect" value="{SITE_URL}/thanks.html">
+<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 <label>Name<input name="name" required></label>
 <label>Email<input type="email" name="email" required></label>
 <label>Phone (optional)<input name="phone"></label>
