@@ -44,6 +44,45 @@ def rel(depth):
     return "../" * depth
 
 
+def clean(path):
+    """Map a built file path to the URL path the host actually serves (Cloudflare strips .html
+    and serves directory indexes at 'dir/'). 'index.html' -> '', 'blog/index.html' -> 'blog/',
+    'about.html' -> 'about'."""
+    if path == "index.html":
+        return ""
+    if path.endswith("/index.html"):
+        return path[: -len("index.html")]
+    if path.endswith(".html"):
+        return path[: -len(".html")]
+    return path
+
+
+def full_url(path):
+    return f"{SITE_URL}/{clean(path)}"
+
+
+def clean_internal_links(page_html, page_path):
+    """Rewrite internal href="...html" links to the clean, root-absolute URLs the host serves,
+    so visitors and crawlers do not hit a redirect on every internal link."""
+    import posixpath
+    base = posixpath.dirname(page_path)
+
+    def fix(m):
+        href = m.group(1)
+        if re.match(r"(https?:|mailto:|tel:|#|//)", href):
+            return m.group(0)
+        target, _, frag = href.partition("#")
+        if not target:
+            return m.group(0)
+        resolved = posixpath.normpath(posixpath.join(base, target)) if not target.startswith("/") else target.lstrip("/")
+        if not (resolved.endswith(".html") or resolved.endswith("/index.html")):
+            return m.group(0)
+        url = "/" + clean(resolved.lstrip("/"))
+        return f'href="{url}{"#" + frag if frag else ""}"'
+
+    return re.sub(r'href="([^"]*)"', fix, page_html)
+
+
 def jsonld(data):
     """Serialise a schema.org object as a JSON-LD script tag (safe against </script>)."""
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
@@ -53,7 +92,7 @@ def breadcrumbs(trail):
     """trail: list of (name, path) from Home down to the current page."""
     return jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": name,
-         "item": SITE_URL + "/" + (path if path != "index.html" else "")}
+         "item": full_url(path)}
         for i, (name, path) in enumerate(trail)]})
 
 
@@ -80,7 +119,7 @@ def layout(title, desc, body, path, depth=0, extra_head=""):
     nav = "".join(
         f'<a href="{r}{href}"{" class=active" if href == path else ""}>{label}</a>'
         for href, label in NAV)
-    canonical = f"{SITE_URL}/{path}" if path != "index.html" else SITE_URL + "/"
+    canonical = full_url(path)
     return f"""<!doctype html>
 <html lang="en-IN"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -221,7 +260,7 @@ def page_contact():
 <input type="hidden" name="access_key" value="4397b2f2-ada9-4ef1-beb5-f6aedae4147f">
 <input type="hidden" name="subject" value="New enquiry from sarfaesiadvocates.com">
 <input type="hidden" name="from_name" value="SARFAESI Advocates website">
-<input type="hidden" name="redirect" value="{SITE_URL}/thanks.html">
+<input type="hidden" name="redirect" value="{SITE_URL}/thanks">
 <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 <label>Name<input name="name" required></label>
 <label>Email<input type="email" name="email" required></label>
@@ -267,6 +306,8 @@ def card(post, r=""):
 def write(path, content):
     f = DIST / path
     f.parent.mkdir(parents=True, exist_ok=True)
+    if path.endswith(".html"):
+        content = clean_internal_links(content, path)
     f.write_text(content, encoding="utf-8")
 
 
@@ -357,7 +398,7 @@ def main():
                 f'<div class="callbox"><b>Have a query on this topic?</b> Call <a href="tel:{PHONE_TEL}">{PHONE}</a> '
                 f'or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</div><p class="note">General information only, not legal advice. Law may have changed after the date of publication.</p>'
                 f'<p><a href="index.html">← All articles</a></p></article>')
-        page_url = f"{SITE_URL}/blog/{p['slug']}.html"
+        page_url = full_url(f"blog/{p['slug']}.html")
         ld = jsonld({"@context": "https://schema.org", "@type": "Article", "headline": p["title"],
                      "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
                      "author": {"@type": "Organization", "name": NAME},
@@ -376,10 +417,10 @@ def main():
              ("blog/index.html", live[0]["date"] if live else None)]
     urls += [(f"blog/{p['slug']}.html", p["date"]) for p in live]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-          "".join(f"<url><loc>{SITE_URL}/{u}</loc>" + (f"<lastmod>{d.isoformat()}</lastmod>" if d else "") + "</url>"
+          "".join(f"<url><loc>{full_url(u) if u else SITE_URL + '/'}</loc>" + (f"<lastmod>{d.isoformat()}</lastmod>" if d else "") + "</url>"
                   for u, d in urls) + "</urlset>")
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
-    items = "".join(f"<item><title>{html.escape(p['title'])}</title><link>{SITE_URL}/blog/{p['slug']}.html</link>"
+    items = "".join(f"<item><title>{html.escape(p['title'])}</title><link>{full_url('blog/' + p['slug'] + '.html')}</link>"
                     f"<pubDate>{p['date'].strftime('%a, %d %b %Y')} 06:00:00 +0530</pubDate><description>{html.escape(p['description'])}</description></item>" for p in live[:20])
     write("blog/feed.xml", f'<?xml version="1.0"?><rss version="2.0"><channel><title>{NAME}</title><link>{SITE_URL}</link><description>SARFAESI law and practice</description>{items}</channel></rss>')
     write("404.html", layout(f"Not found | {NAME}", "Page not found.", '<section class="page-head"><div class="wrap"><h1>Page not found</h1><p><a href="/index.html">Return home</a></p></div></section>', "404.html"))
