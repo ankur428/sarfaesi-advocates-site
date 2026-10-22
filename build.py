@@ -16,11 +16,14 @@ Re-running the build each day publishes any post whose date has arrived.
 """
 import datetime as dt
 import html
+import json
 import re
 import shutil
 from pathlib import Path
 
 import markdown
+
+from service_pages import SERVICE_BY_SLUG, SERVICE_KEYS, SERVICE_PAGES
 
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
@@ -41,6 +44,37 @@ def rel(depth):
     return "../" * depth
 
 
+def jsonld(data):
+    """Serialise a schema.org object as a JSON-LD script tag (safe against </script>)."""
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def breadcrumbs(trail):
+    """trail: list of (name, path) from Home down to the current page."""
+    return jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": name,
+         "item": SITE_URL + "/" + (path if path != "index.html" else "")}
+        for i, (name, path) in enumerate(trail)]})
+
+
+def crumbs_html(trail, depth=0):
+    r = rel(depth)
+    parts = [f'<a href="{r}{path}">{html.escape(name)}</a>' for name, path in trail[:-1]]
+    parts.append(f'<span>{html.escape(trail[-1][0])}</span>')
+    return '<nav class="crumbs" aria-label="Breadcrumb"><div class="wrap">' + " › ".join(parts) + "</div></nav>"
+
+
+def post_services(slug):
+    """Service pages a post relates to, best match first (max 2)."""
+    scored = []
+    for svc_slug, keys in SERVICE_KEYS.items():
+        score = sum(1 for k in keys if k in slug)
+        if score:
+            scored.append((score, svc_slug))
+    scored.sort(key=lambda t: (-t[0], t[1]))
+    return [s for _, s in scored[:2]]
+
+
 def layout(title, desc, body, path, depth=0, extra_head=""):
     r = rel(depth)
     nav = "".join(
@@ -48,13 +82,16 @@ def layout(title, desc, body, path, depth=0, extra_head=""):
         for href, label in NAV)
     canonical = f"{SITE_URL}/{path}" if path != "index.html" else SITE_URL + "/"
     return f"""<!doctype html>
-<html lang="en"><head>
+<html lang="en-IN"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="canonical" href="{canonical}">
+<link rel="alternate" type="application/rss+xml" title="{NAME} blog" href="{SITE_URL}/blog/feed.xml">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:type" content="website"><meta property="og:url" content="{canonical}">
+<meta property="og:type" content="website"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="{NAME}"><meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="{r}assets/style.css">
 {extra_head}
 </head><body>
@@ -68,6 +105,7 @@ def layout(title, desc, body, path, depth=0, extra_head=""):
 <div><h4>{NAME}</h4><p>Litigation, liaisoning and advisory under the SARFAESI Act, 2002, DRT/DRAT proceedings and secured-asset auctions.</p></div>
 <div><h4>Contact</h4><p>{ADDRESS}<br><a href="tel:{PHONE_TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
 <div><h4>Explore</h4><p><a href="{r}services.html">Services</a><br><a href="{r}blog/index.html">Blog</a><br><a href="{r}faq.html">FAQs</a><br><a href="{r}disclaimer.html">Disclaimer</a></p></div>
+<div><h4>Practice areas</h4><p>{"<br>".join(f'<a href="{r}{s["slug"]}.html">{html.escape(s["nav"])}</a>' for s in SERVICE_PAGES)}</p></div>
 </div>
 <div class="wrap legal">© {TODAY.year} {NAME}. Content on this website is for general information only and is not legal advice. As per the rules of the Bar Council of India, this site is not advertising or solicitation.</div>
 </footer>
@@ -101,7 +139,7 @@ def page_index():
 <section class="band"><div class="wrap grid2">
 <div><h2>Why a specialist practice?</h2>
 <p>SARFAESI matters are governed by short limitation periods, mandatory pre-deposits, strict procedural rules for notices and sale, and a fast-moving body of case law. A missed date or a defective challenge can be fatal to the case.</p></div>
-<ul class="ticks"><li>Section 13(2) notice replies and 13(3A) objections</li><li>Section 17 applications and interim protection</li><li>Section 14 possession orders and resistance</li><li>Auction notices, reserve price and e-auction irregularities</li><li>Pre-deposit and Section 18 appeals</li><li>Purchaser due diligence and title protection</li></ul>
+<ul class="ticks"><li><a href="section-13-2-notice-reply.html">Section 13(2) notice replies and 13(3A) objections</a></li><li><a href="section-17-drt-application.html">Section 17 applications and interim protection</a></li><li><a href="section-14-possession-order.html">Section 14 possession orders and resistance</a></li><li><a href="sarfaesi-auction-disputes.html">Auction notices, reserve price and e-auction irregularities</a></li><li><a href="section-18-drat-appeal.html">Pre-deposit and Section 18 appeals</a></li><li><a href="sarfaesi-auction-disputes.html">Purchaser due diligence and title protection</a></li><li><a href="one-time-settlement-redemption.html">One-time settlement and redemption</a></li></ul>
 </div></section>
 <section class="wrap pad"><h2>From the blog</h2><div class="grid3">{{latest}}</div>
 <p><a href="blog/index.html">All articles →</a></p></section>
@@ -134,7 +172,14 @@ def page_services():
         ("Settlements, OTS and redemption", "Negotiating one-time settlements and restructuring, and advising on the borrower's right of redemption."),
         ("Purchaser and lender advisory", "Due diligence before bidding, title and encumbrance checks, and enforcement strategy and compliance for lenders."),
     ]
-    cards = "".join(f'<div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in items)
+    # Cards that have a dedicated page link to it (matched by position in the list above).
+    page_for = {0: "section-13-2-notice-reply", 1: "section-17-drt-application", 2: "section-18-drat-appeal",
+                3: "section-14-possession-order", 4: "sarfaesi-auction-disputes", 6: "one-time-settlement-redemption"}
+    cards = "".join(
+        f'<div class="card"><h3>{t}</h3><p>{d}</p>'
+        + (f'<p><a href="{page_for[i]}.html">Read more →</a></p>' if i in page_for else "")
+        + '</div>'
+        for i, (t, d) in enumerate(items))
     return f"""<section class="page-head"><div class="wrap"><h1>Services</h1><p>Litigation, liaisoning and advisory across the SARFAESI enforcement cycle.</p></div></section>
 <section class="wrap grid2 pad">{cards}</section>{cta()}"""
 
@@ -219,6 +264,44 @@ def write(path, content):
     f.write_text(content, encoding="utf-8")
 
 
+def legal_service_ld():
+    return jsonld({
+        "@context": "https://schema.org", "@type": "LegalService", "@id": SITE_URL + "/#firm",
+        "name": NAME, "url": SITE_URL + "/",
+        "description": "Advocates for SARFAESI Act proceedings, DRT and DRAT litigation, Section 13(2) notices, possession orders and secured-asset auction disputes.",
+        "telephone": "+918048067040", "email": EMAIL,
+        "address": {"@type": "PostalAddress", "streetAddress": "No. 76, Kasturi Complex, 2nd Floor, Mission Road",
+                    "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560027", "addressCountry": "IN"},
+        "areaServed": [{"@type": "City", "name": "Bengaluru"}, {"@type": "State", "name": "Karnataka"}],
+        "knowsAbout": ["SARFAESI Act, 2002", "Debts Recovery Tribunal proceedings", "Secured-asset auctions"],
+    })
+
+
+def render_service(svc, live):
+    """Build one service landing page. Returns (body_html, extra_head)."""
+    slug = svc["slug"]
+    related = [p for p in live if slug in post_services(p["slug"])][:8]
+    others = [s for s in SERVICE_PAGES if s["slug"] != slug]
+    qa = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in svc["faqs"])
+    rel_posts = "".join(
+        f'<li><a href="blog/{p["slug"]}.html">{html.escape(p["title"])}</a></li>' for p in related)
+    rel_block = f'<h2>Related articles</h2><ul class="related">{rel_posts}</ul>' if related else ""
+    more = "".join(f'<li><a href="{s["slug"]}.html">{html.escape(s["nav"])}</a></li>' for s in others)
+    trail = [("Home", "index.html"), ("Services", "services.html"), (svc["nav"], f"{slug}.html")]
+    body = (f'{crumbs_html(trail)}'
+            f'<section class="page-head"><div class="wrap"><h1>{html.escape(svc["h1"])}</h1><p>{html.escape(svc["lead"])}</p></div></section>'
+            f'<section class="wrap prose pad">{svc["body"]}'
+            f'<h2>Frequently asked questions</h2>{qa}'
+            f'{rel_block}'
+            f'<h2>Other practice areas</h2><ul class="related">{more}</ul>'
+            f'<p class="note">General information only, not legal advice. Please check the current text of the Act and Rules, which may have been amended.</p>'
+            f'</section>{cta()}')
+    faq_ld = jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": re.sub(r"<[^>]+>", "", q),
+         "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in svc["faqs"]]})
+    return body, breadcrumbs(trail) + faq_ld
+
+
 def main():
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -230,9 +313,14 @@ def main():
     latest = "".join(card(p) for p in live[:3])
     write("index.html", layout(f"{NAME} | SARFAESI Act litigation, auctions and advisory in Bengaluru",
           "Specialist advocates for SARFAESI Act proceedings, DRT and DRAT litigation, Section 13(2) notices and auction disputes.",
-          page_index().replace("{latest}", latest), "index.html"))
-    write("about.html", layout(f"About | {NAME}", "About SARFAESI Advocates, a Bengaluru practice focused on secured-asset enforcement law.", page_about(), "about.html"))
-    write("services.html", layout(f"Services | {NAME}", "SARFAESI notices, Section 17 applications, DRAT appeals, Section 14 possession and auction disputes.", page_services(), "services.html"))
+          page_index().replace("{latest}", latest), "index.html", extra_head=legal_service_ld()))
+    write("about.html", layout(f"About | {NAME}", "About SARFAESI Advocates, a Bengaluru practice focused on secured-asset enforcement law.", page_about(), "about.html",
+          extra_head=breadcrumbs([("Home", "index.html"), ("About", "about.html")])))
+    write("services.html", layout(f"Services | {NAME}", "SARFAESI notices, Section 17 applications, DRAT appeals, Section 14 possession and auction disputes.", page_services(), "services.html",
+          extra_head=breadcrumbs([("Home", "index.html"), ("Services", "services.html")])))
+    for svc in SERVICE_PAGES:
+        svc_body, svc_head = render_service(svc, live)
+        write(f"{svc['slug']}.html", layout(f"{svc['title']} | {NAME}", svc["desc"], svc_body, f"{svc['slug']}.html", extra_head=svc_head))
     faq_body, faq_head = page_faq()
     write("faq.html", layout(f"FAQs | {NAME}", "Answers on SARFAESI limitation, pre-deposit, auctions and remedies.", faq_body, "faq.html", extra_head=faq_head))
     write("contact.html", layout(f"Contact | {NAME}", "Contact SARFAESI Advocates, Mission Road, Bengaluru.", page_contact(), "contact.html"))
@@ -244,23 +332,46 @@ def main():
           f'<section class="page-head"><div class="wrap"><h1>Blog</h1><p>Practical notes on SARFAESI law and practice.</p></div></section><section class="wrap grid2 pad">{cards}</section>',
           "blog/index.html", depth=1))
     for p in live:
-        body = (f'<section class="page-head"><div class="wrap"><p class="meta">{p["category"]} · {p["date"].strftime("%d %B %Y")}</p>'
+        svcs = post_services(p["slug"])
+        # Link each article to its practice-area page(s) and to a few sibling articles.
+        svc_links = "".join(
+            f'<li><a href="../{s}.html">{html.escape(SERVICE_BY_SLUG[s]["nav"])}</a></li>' for s in svcs)
+        sibs = [q for q in live if q["slug"] != p["slug"] and set(svcs) & set(post_services(q["slug"]))][:3]
+        sib_links = "".join(f'<li><a href="{q["slug"]}.html">{html.escape(q["title"])}</a></li>' for q in sibs)
+        related_box = ""
+        if svc_links:
+            related_box += f'<div class="related-box"><h2>Related practice areas</h2><ul class="related">{svc_links}</ul></div>'
+        if sib_links:
+            related_box += f'<div class="related-box"><h2>Related articles</h2><ul class="related">{sib_links}</ul></div>'
+        trail = [("Home", "index.html"), ("Blog", "blog/index.html"), (p["title"], f"blog/{p['slug']}.html")]
+        body = (f'{crumbs_html(trail, depth=1)}'
+                f'<section class="page-head"><div class="wrap"><p class="meta">{p["category"]} · {p["date"].strftime("%d %B %Y")}</p>'
                 f'<h1>{html.escape(p["title"])}</h1></div></section>'
-                f'<article class="wrap prose pad">{p["html"]}'
+                f'<article class="wrap prose pad">{p["html"]}{related_box}'
                 f'<div class="callbox"><b>Have a query on this topic?</b> Call <a href="tel:{PHONE_TEL}">{PHONE}</a> '
                 f'or write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</div><p class="note">General information only, not legal advice. Law may have changed after the date of publication.</p>'
                 f'<p><a href="index.html">← All articles</a></p></article>')
-        import json
-        ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": p["title"],
-                         "datePublished": p["date"].isoformat(), "author": {"@type": "Organization", "name": NAME},
-                         "description": p["description"]})
-        write(f"blog/{p['slug']}.html", layout(f"{p['title']} | {NAME}", p["description"], body,
-              f"blog/{p['slug']}.html", depth=1, extra_head=f'<script type="application/ld+json">{ld}</script>'))
+        page_url = f"{SITE_URL}/blog/{p['slug']}.html"
+        ld = jsonld({"@context": "https://schema.org", "@type": "Article", "headline": p["title"],
+                     "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
+                     "author": {"@type": "Organization", "name": NAME},
+                     "publisher": {"@type": "Organization", "name": NAME, "url": SITE_URL + "/"},
+                     "mainEntityOfPage": page_url, "inLanguage": "en-IN",
+                     "description": p["description"]})
+        # Long article titles are truncated in search results; skip the brand suffix when it would push past ~65 chars.
+        page_title = p["title"] if len(p["title"]) + len(NAME) + 3 > 65 else f"{p['title']} | {NAME}"
+        write(f"blog/{p['slug']}.html", layout(page_title, p["description"], body,
+              f"blog/{p['slug']}.html", depth=1, extra_head=ld + breadcrumbs(trail)))
 
     # feed, sitemap, robots
-    urls = ["", "about.html", "services.html", "faq.html", "contact.html", "disclaimer.html", "blog/index.html"] + [f"blog/{p['slug']}.html" for p in live]
+    urls = [("", None), ("about.html", None), ("services.html", None)]
+    urls += [(f"{s['slug']}.html", None) for s in SERVICE_PAGES]
+    urls += [("faq.html", None), ("contact.html", None), ("disclaimer.html", None),
+             ("blog/index.html", live[0]["date"] if live else None)]
+    urls += [(f"blog/{p['slug']}.html", p["date"]) for p in live]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-          "".join(f"<url><loc>{SITE_URL}/{u}</loc></url>" for u in urls) + "</urlset>")
+          "".join(f"<url><loc>{SITE_URL}/{u}</loc>" + (f"<lastmod>{d.isoformat()}</lastmod>" if d else "") + "</url>"
+                  for u, d in urls) + "</urlset>")
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     items = "".join(f"<item><title>{html.escape(p['title'])}</title><link>{SITE_URL}/blog/{p['slug']}.html</link>"
                     f"<pubDate>{p['date'].strftime('%a, %d %b %Y')} 06:00:00 +0530</pubDate><description>{html.escape(p['description'])}</description></item>" for p in live[:20])

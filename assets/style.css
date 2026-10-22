@@ -63,3 +63,12 @@ input,textarea{display:block;width:100%;margin-top:5px;padding:10px;border:1px s
  .hero{padding:56px 0}
 }
 .callbox{background:var(--soft);border-left:4px solid var(--gold);padding:16px 20px;margin:32px 0 20px;font-family:system-ui,sans-serif;border-radius:4px}
+.crumbs{background:#fff;border-bottom:1px solid var(--line);font-size:14px;color:var(--mute);padding:10px 0;font-family:system-ui,sans-serif}
+.crumbs a{color:var(--navy2);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.related{padding-left:20px}
+.related li{margin:.45em 0}
+.related-box{margin-top:28px}
+.related-box h2{font-size:20px;margin-bottom:.2em}
+.ticks a{text-decoration:none;color:inherit}
+.ticks a:hover{text-decoration:underline}
