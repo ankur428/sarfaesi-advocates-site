@@ -197,7 +197,7 @@ SERVICE_PAGES = [
 <p>For immovable property, the Rules require the secured creditor to fix a reserve price, normally on a valuation, and to give the borrower at least thirty days' notice of the sale. The sale notice is published as the Rules require. No sale takes place before the notice period ends. See <a href="blog/2026-10-05-bank-auction-notice-reserve-price.html">the bank auction notice and the reserve price</a>.</p>
 
 <h2>Payment by the purchaser</h2>
-<p>Rule 9 requires the purchaser to pay twenty-five per cent of the price when the sale is declared in the purchaser's favour, adjusted against any earnest money, and the balance within fifteen days of confirmation of sale, unless a longer period of up to three months is agreed in writing. Default can result in forfeiture of the amount deposited. Check Rule 9 for the exact timing.</p>
+<p>Rule 9 requires the purchaser to pay a deposit of twenty-five per cent of the price on the day of the sale or not later than the next working day, adjusted against any earnest money, and the balance within fifteen days of confirmation of sale, unless a longer period, not exceeding three months, is agreed in writing. Default can result in forfeiture of the amount deposited.</p>
 
 <h2>Grounds commonly examined when a sale is challenged</h2>
 <ul class="ticks">
@@ -220,7 +220,7 @@ SERVICE_PAGES = [
 <p>Our <a href="blog/2026-10-06-buying-at-sarfaesi-auction-checklist.html">checklist for buying at a SARFAESI auction</a> and the note on <a href="blog/2026-10-10-stamp-duty-registration-sale-certificate-sarfaesi.html">stamp duty and registration of the sale certificate</a> go into these points.</p>
 
 <h2>For borrowers</h2>
-<p>The borrower's right of redemption under Section 13(8) is time-bound, and the point up to which it can be exercised has been narrowed by amendment. Check the current text of Section 13(8) and see our page on <a href="one-time-settlement-redemption.html">settlement and redemption</a>.</p>
+<p>Under Section 13(8), as amended in 2016, a borrower can tender the dues, with costs and expenses, only up to the date of publication of the notice for public auction (or for inviting quotations or tenders). After that, the right is no longer available under this provision. See our page on <a href="one-time-settlement-redemption.html">settlement and redemption</a>.</p>
 """,
         "faqs": [
             ("Can I stop a bank auction?",
@@ -257,7 +257,7 @@ SERVICE_PAGES = [
 </ul>
 
 <h2>Redemption under Section 13(8)</h2>
-<p>A borrower may redeem the secured asset by tendering the dues together with costs and expenses. The stage up to which this right can be exercised has been narrowed by amendment, so check the current text of Section 13(8). See <a href="blog/2026-10-07-right-of-redemption-section-13-8.html">the right of redemption</a>.</p>
+<p>A borrower may redeem the secured asset by tendering the dues together with costs and expenses. Under Section 13(8), as amended in 2016, this can be done at any time before the date of publication of the notice for public auction (or for inviting quotations or tenders). The date on which the auction notice is first published is therefore the practical deadline, and settlement money should be paid before it. See <a href="blog/2026-10-07-right-of-redemption-section-13-8.html">the right of redemption</a>.</p>
 
 <h2>Restructuring for small businesses</h2>
 <p>Borrowers in the MSME sector may have additional options under RBI frameworks. See <a href="blog/2026-10-17-msme-borrowers-rbi-restructuring-sarfaesi.html">MSME borrowers, RBI restructuring and SARFAESI</a>, and for home loans, <a href="blog/2026-10-16-home-loan-default-options-before-auction.html">options before auction</a>.</p>
@@ -270,7 +270,7 @@ SERVICE_PAGES = [
             ("What should the settlement document cover?",
              "The amount, the payment schedule, the consequence of default, release of security, and closure of proceedings."),
             ("Until when can a borrower redeem the property?",
-             "Section 13(8) fixes the stage up to which the right is available and has been amended. Check the current text of the Act."),
+             "Under Section 13(8), as amended in 2016, the dues can be tendered at any time before the date of publication of the notice for public auction (or for inviting quotations or tenders). After that, the right under this provision is no longer available."),
         ],
     },
     {
@@ -368,7 +368,7 @@ SERVICE_PAGES = [
 <p>Departures from Rules 8 and 9 are a frequent ground of challenge, and the Supreme Court in <i>Mathew Varghese v. M. Amritha Kumar</i> (2014) 5 SCC 610 held that they must be complied with. A review of the notice and the sale notice before they are issued is usually less costly than defending them afterwards.</p>
 
 <h2>Joint financiers</h2>
-<p>Where more than one secured creditor has financed a borrower, Section 13(9) provides that no secured creditor may exercise its rights unless creditors representing not less than sixty per cent in value of the amount outstanding agree. See <a href="blog/2026-10-06-section-13-9-joint-financiers-consortium.html">joint financiers under Section 13(9)</a> and <a href="blog/2026-10-13-consortium-multiple-bank-lending-enforcement.html">consortium lending and enforcement</a>.</p>
+<p>Where more than one secured creditor has financed a borrower, Section 13(9) provides that, subject to the Insolvency and Bankruptcy Code, 2016, no secured creditor may exercise its rights unless creditors representing not less than sixty per cent in value of the amount outstanding agree, and the action then binds all of them. See <a href="blog/2026-10-06-section-13-9-joint-financiers-consortium.html">joint financiers under Section 13(9)</a> and <a href="blog/2026-10-13-consortium-multiple-bank-lending-enforcement.html">consortium lending and enforcement</a>.</p>
 
 <h2>Asset reconstruction companies</h2>
 <p>An asset reconstruction company that acquires a financial asset can enforce the security under the Act. See <a href="blog/2026-10-08-asset-reconstruction-companies-arcs-sarfaesi.html">the role of ARCs</a>.</p>
@@ -406,7 +406,7 @@ SERVICE_PAGES = [
 <p>In <i>Transcore v. Union of India</i> (2008) 1 SCC 125, the Supreme Court held that the SARFAESI Act and the RDB Act operate together. See <a href="blog/2026-10-10-sarfaesi-vs-rdb-act-which-route.html">SARFAESI or the RDB Act: which route</a>.</p>
 
 <h2>Shortfall after a sale</h2>
-<p>Where the sale proceeds of the secured asset do not clear the dues, Section 13(10) allows the secured creditor to apply to the DRT or a competent court for recovery of the balance from the borrower.</p>
+<p>Where the sale proceeds of the secured asset do not clear the dues, Section 13(10) allows the secured creditor to apply to the DRT having jurisdiction or a competent court, as the case may be, for recovery of the balance from the borrower. Which forum applies depends on the amount and on the RDB Act, so check the current position.</p>
 
 <h2>Civil courts</h2>
 <p>Section 34 bars a civil court from entertaining proceedings in respect of a matter that the DRT or the Appellate Tribunal is empowered to decide under the Act. The borrower's remedy lies before the Tribunal under <a href="section-17-drt-application.html">Section 17</a>.</p>
