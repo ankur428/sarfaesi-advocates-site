@@ -17,6 +17,7 @@ Re-running the build each day publishes any post whose date has arrived.
 import datetime as dt
 import html
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -34,7 +35,8 @@ PHONE_TEL = "08048067040"
 EMAIL = "sarfaesiadvocates@gmail.com"
 ADDRESS = "No. 76, Kasturi Complex, 2nd Floor, Mission Road, Bengaluru 560027"
 from zoneinfo import ZoneInfo
-TODAY = dt.datetime.now(ZoneInfo('Asia/Kolkata')).date()
+TODAY = (dt.date.fromisoformat(os.environ["BUILD_DATE"]) if os.environ.get("BUILD_DATE")
+         else dt.datetime.now(ZoneInfo('Asia/Kolkata')).date())  # BUILD_DATE=YYYY-MM-DD is for testing only
 
 NAV = [("index.html", "Home"), ("about.html", "About"), ("services.html", "Services"),
        ("faq.html", "FAQs"), ("blog/index.html", "Blog"), ("contact.html", "Contact")]
@@ -293,8 +295,113 @@ def parse_post(p):
     meta = {k.strip(): v.strip() for k, v in meta.items()}
     meta["date"] = dt.date.fromisoformat(meta["date"])
     meta["slug"] = p.stem
+    meta["md"] = m.group(2)
     meta["html"] = markdown.markdown(m.group(2), extensions=["extra", "sane_lists"])
     return meta
+
+
+# ---------------------------------------------------------------------------
+# Quality gate for the unattended daily blog task.
+# Applies to posts dated on/after LINT_FROM (older posts pre-date these rules).
+# Errors stop the local build (so a bad post is not committed); on Cloudflare's own build
+# they are downgraded to warnings so a lint problem can never stop the site deploying.
+# ---------------------------------------------------------------------------
+LINT_FROM = dt.date(2026, 11, 9)
+STRICT = not (os.environ.get("CF_PAGES") or os.environ.get("WORKERS_CI") or os.environ.get("CI"))
+ALLOWED_CASES = {"(2004) 4 SCC 311", "(2008) 1 SCC 125", "(2010) 8 SCC 110", "(2014) 5 SCC 610", "(2014) 6 SCC 1"}
+BANNED_PHRASES = [r"\bbest (?:lawyer|advocate|law firm)", r"\btop (?:lawyer|advocate|law firm)",
+                  r"\bguarantee[sd]? (?:success|results?|outcomes?|a win)", r"\bwe (?:will|can) (?:win|get you)",
+                  r"\b100% ", r"\bcall (?:us )?now", r"\bhire (?:us|a lawyer)", r"\bcontact us\b",
+                  r"\bfree consultation", r"\bour clients?\b", r"\bwe (?:have )?(?:won|handled)\b"]
+ALLOWED_CATEGORIES = {"Basics", "Notices", "Litigation", "Possession", "Auctions", "Borrower Guidance",
+                      "Lender Guidance", "Case Law", "Settlement", "Recovery Routes"}
+KNOWN_PAGES = {"about", "services", "faq", "contact", "disclaimer", "blog/"}
+
+
+def faq_from_post_html(page_html):
+    """Pull (question, answer) pairs from a '## Frequently asked questions' section whose
+    questions are '### ' headings, for FAQPage structured data."""
+    m = re.search(r"<h2>\s*Frequently asked questions\s*</h2>(.*?)(?=<h2>|\Z)", page_html, re.S | re.I)
+    if not m:
+        return []
+    pairs = []
+    for q, body in re.findall(r"<h3>(.*?)</h3>\s*((?:<(?:p|ul|ol)>.*?</(?:p|ul|ol)>\s*)+)", m.group(1), re.S):
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body)).strip()
+        if q.strip() and text:
+            pairs.append((re.sub(r"<[^>]+>", "", q).strip(), text))
+    return pairs
+
+
+def lint_posts(posts):
+    by_slug = {p["slug"]: p for p in posts}
+    errors, warns = [], []
+    seen_titles = {}
+    for p in posts:
+        t = p["title"].strip().lower()
+        if t in seen_titles:
+            (errors if p["date"] >= LINT_FROM else warns).append(f"{p['slug']}: duplicate title of {seen_titles[t]}")
+        seen_titles[t] = p["slug"]
+    for p in posts:
+        if p["date"] < LINT_FROM:
+            continue
+        s, md = p["slug"], p["md"]
+        words = len(re.findall(r"\b\w+\b", re.sub(r"\(/[^)]*\)", "", md)))
+        e = lambda msg: errors.append(f"{s}: {msg}")
+        w = lambda msg: warns.append(f"{s}: {msg}")
+        for key in ("title", "date", "category", "description"):
+            if not p.get(key):
+                e(f"missing front-matter '{key}'")
+        if not (25 <= len(p["title"]) <= 65):
+            e(f"title is {len(p['title'])} chars (want 25-65, keyword first)")
+        if not (70 <= len(p["description"]) <= 160):
+            e(f"description is {len(p['description'])} chars (want 70-160)")
+        if p["category"] not in ALLOWED_CATEGORIES:
+            w(f"category '{p['category']}' not in {sorted(ALLOWED_CATEGORIES)}")
+        if not (450 <= words <= 850):
+            e(f"body is {words} words (want 450-850)")
+        if len(re.findall(r"(?m)^## ", md)) < 3:
+            e("needs at least three '## ' headings")
+        if not re.search(r"(?mi)^## Frequently asked questions\s*$", md):
+            w("no '## Frequently asked questions' section (earns FAQ rich results)")
+        if not post_services(s):
+            w("slug has no practice-area keyword, so it will not auto-link to a practice page")
+        for c in re.findall(r"\(\d{4}\)\s*\d+\s*SCC\s*\d+", md):
+            if re.sub(r"\s+", " ", c) not in ALLOWED_CASES:
+                e(f"citation '{c}' is not on the allowed list in CLAUDE.md")
+        if re.search(r"\bAIR\s*\d{4}|SCC\s*OnLine|\bMANU/|\bILR\b", md):
+            e("only the five allowed SCC citations may appear")
+        for pat in BANNED_PHRASES:
+            m = re.search(pat, md, re.I)
+            if m:
+                e(f"promotional or solicitation wording: '{m.group(0)}'")
+        if re.search(r"\]\(https?://", md) or re.search(r"<a\s", md):
+            e("no external links (internal links only)")
+        links = re.findall(r"\]\((/[^)\s]*)\)", md)
+        svc_links = [l for l in links if l.lstrip("/") in SERVICE_BY_SLUG]
+        post_links = [l for l in links if l.startswith("/blog/") and l != "/blog/"]
+        if not svc_links:
+            e("needs at least one link to a practice-area page, e.g. [text](/section-17-drt-application)")
+        if not post_links:
+            e("needs at least one link to an earlier article, e.g. [title](/blog/<slug>)")
+        for l in links:
+            path = l.split("#")[0]
+            if path.endswith(".html"):
+                e(f"link '{l}' uses .html; use the clean URL")
+            elif path.startswith("/blog/") and path != "/blog/":
+                tgt = by_slug.get(path[len("/blog/"):])
+                if tgt is None:
+                    e(f"link '{l}' points to a post that does not exist")
+                elif tgt["date"] > p["date"]:
+                    e(f"link '{l}' points to a post dated after this one (not live yet)")
+            elif path.lstrip("/") not in KNOWN_PAGES and path.lstrip("/") not in SERVICE_BY_SLUG:
+                e(f"link '{l}' does not match any page")
+    for msg in warns:
+        print(f"  lint warning: {msg}")
+    for msg in errors:
+        print(f"  LINT {'ERROR' if STRICT else 'warning (CI build, not stopping)'}: {msg}")
+    if errors and STRICT:
+        raise SystemExit(f"Build stopped: {len(errors)} post lint error(s). Fix the post and re-run.")
+    return len(errors), len(warns)
 
 
 def card(post, r=""):
@@ -354,6 +461,7 @@ def main():
         shutil.rmtree(DIST)
     shutil.copytree(ROOT / "assets", DIST / "assets")
     posts = [parse_post(p) for p in sorted((ROOT / "posts").glob("*.md"))]
+    n_err, n_warn = lint_posts(posts)
     live = sorted([p for p in posts if p["date"] <= TODAY], key=lambda p: p["date"], reverse=True)
     queued = [p for p in posts if p["date"] > TODAY]
 
@@ -405,6 +513,11 @@ def main():
                      "publisher": {"@type": "Organization", "name": NAME, "url": SITE_URL + "/"},
                      "mainEntityOfPage": page_url, "inLanguage": "en-IN",
                      "description": p["description"]})
+        faq_pairs = faq_from_post_html(p["html"])
+        if faq_pairs:
+            ld += jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq_pairs]})
         # Long article titles are truncated in search results; skip the brand suffix when it would push past ~65 chars.
         page_title = p["title"] if len(p["title"]) + len(NAME) + 3 > 65 else f"{p['title']} | {NAME}"
         write(f"blog/{p['slug']}.html", layout(page_title, p["description"], body,
