@@ -13,13 +13,19 @@ SERVICE_KEYS = {
     "section-13-2-notice-reply": ["13-2", "13-3", "demand-notice", "npa", "objecting", "loan-account",
                                   "documents-to-keep", "what-a-sarfaesi-notice", "notice-period"],
     "section-17-drt-application": ["section-17", "interim-relief", "who-can-file", "civil-court",
-                                   "costs-compensation", "delay-bank-action", "writ", "mardia"],
+                                   "costs-compensation", "delay-bank-action", "mardia"],
     "section-18-drat-appeal": ["section-18", "pre-deposit", "drat"],
     "section-14-possession-order": ["section-14", "possession", "tenants", "13-4-a", "harshad"],
     "sarfaesi-auction-disputes": ["auction", "reserve-price", "sale-of", "purchaser", "stamp-duty",
                                   "bidding", "surplus", "13-6", "mathew-varghese", "13-10"],
     "one-time-settlement-redemption": ["settlement", "redemption", "13-8", "home-loan", "msme",
                                        "restructuring"],
+    "guarantors-sarfaesi-enforcement": ["guarantor"],
+    "high-court-writ-sarfaesi": ["writ", "satyawati"],
+    "lender-arc-enforcement-advisory": ["asset-reconstruction", "arcs", "joint-financiers", "consortium",
+                                        "priority-secured", "secured-creditor", "movable", "npa"],
+    "sarfaesi-and-rdb-act-recovery-routes": ["rdb-act", "transcore"],
+    "tenants-occupants-sarfaesi-possession": ["tenants", "harshad", "lessees"],
 }
 
 SERVICE_PAGES = [
@@ -265,6 +271,196 @@ SERVICE_PAGES = [
              "The amount, the payment schedule, the consequence of default, release of security, and closure of proceedings."),
             ("Until when can a borrower redeem the property?",
              "Section 13(8) fixes the stage up to which the right is available and has been amended. Check the current text of the Act."),
+        ],
+    },
+    {
+        "slug": "guarantors-sarfaesi-enforcement",
+        "nav": "Guarantors and third-party mortgagors",
+        "title": "Guarantors and SARFAESI Enforcement",
+        "h1": "Guarantors and third-party mortgagors under SARFAESI",
+        "desc": "How SARFAESI applies to guarantors and to persons who mortgage property for another's loan: notices, objections, defences and the Section 17 remedy.",
+        "lead": "A guarantor, or a person who has mortgaged property to secure someone else's loan, can face SARFAESI action as directly as the principal borrower.",
+        "body": """
+<h2>Who counts as a borrower</h2>
+<p>The Act defines "borrower" widely. It includes a person who has given a guarantee, or created a mortgage or pledge, as security for financial assistance granted to someone else. A guarantor or third-party mortgagor can therefore receive a notice under Section 13(2), and the secured asset they have charged can be enforced against.</p>
+
+<h2>Rights at the notice stage</h2>
+<p>The position is the same as for the principal borrower: sixty days from the notice to discharge the liability, and a right to object under Section 13(3A), to which the creditor must reply with reasons if it does not accept the objection. Check what the notice says about the guarantor's own liability and about which secured assets are to be enforced. See our page on <a href="section-13-2-notice-reply.html">replying to a Section 13(2) notice</a>.</p>
+
+<h2>The liability of a guarantor</h2>
+<p>Under Section 128 of the Indian Contract Act, 1872, the liability of a surety is co-extensive with that of the principal debtor, unless the contract provides otherwise. The guarantee document, and the terms on which it was given, therefore matter. Our article on <a href="blog/2026-10-04-guarantors-sarfaesi-liability-defences.html">guarantors and SARFAESI: liability and defences</a> goes into this.</p>
+
+<h2>Points commonly examined</h2>
+<ul class="ticks">
+<li>The scope, validity and execution of the guarantee or mortgage deed</li>
+<li>Whether the terms of the loan were varied without the guarantor's consent. Under Section 133 of the Contract Act, such a variance can discharge a surety for later transactions</li>
+<li>The amount claimed, interest and the classification of the account</li>
+<li>Whether the notice and the later steps comply with the Act and with Rules 8 and 9 (<i>Mathew Varghese v. M. Amritha Kumar</i> (2014) 5 SCC 610)</li>
+<li>Whether the property proceeded against is the property that was actually charged</li>
+</ul>
+<p>Whether any of these helps depends on the documents and the facts.</p>
+
+<h2>The remedy</h2>
+<p>A guarantor or mortgagor aggrieved by a measure under Section 13(4) may apply to the Debts Recovery Tribunal within forty-five days. See <a href="section-17-drt-application.html">Section 17 applications</a>.</p>
+""",
+        "faqs": [
+            ("Can a bank proceed against a guarantor under SARFAESI?",
+             "A guarantor is within the Act's definition of borrower. SARFAESI measures operate on secured assets, which are assets over which a security interest was created. If the guarantor charged property, that property can be enforced against."),
+            ("Can the bank reach my other property as a guarantor?",
+             "Recovery from assets that were not charged generally has to be sought through a recovery application before the DRT or a civil suit, not through Section 13(4). Check the guarantee and the security documents."),
+            ("Can a guarantor apply to the DRT?",
+             "Yes. Section 17 allows any person, including a borrower, who is aggrieved by a measure under Section 13(4) to apply, ordinarily within forty-five days."),
+            ("Does a settlement by the principal borrower release the guarantor?",
+             "That depends on the terms of the settlement and of the guarantee. It should be recorded in writing."),
+        ],
+    },
+    {
+        "slug": "high-court-writ-sarfaesi",
+        "nav": "Writ petitions in the High Court",
+        "title": "Writ Petitions against SARFAESI Action",
+        "h1": "Writ petitions in the High Court against SARFAESI action",
+        "desc": "When the High Court entertains a writ petition against SARFAESI action despite the DRT remedy, and why the statutory remedy is usually the first step.",
+        "lead": "The High Court has writ jurisdiction over SARFAESI action, but the Supreme Court has discouraged borrowers from bypassing the statutory remedy.",
+        "body": """
+<h2>The general position</h2>
+<p>Sections 17 and 18 give a borrower or other aggrieved person a remedy before the Debts Recovery Tribunal and then the Appellate Tribunal. In <i>United Bank of India v. Satyawati Tondon</i> (2010) 8 SCC 110, the Supreme Court discouraged High Courts from entertaining writ petitions against SARFAESI action where this statutory remedy is available. The High Court may decline to hear the petition and send the person to the Tribunal.</p>
+
+<h2>When a writ is considered</h2>
+<p>A writ petition is entertained only in limited situations, such as a manifest lack of jurisdiction or a violation of fundamental rights. Whether a case falls in this category depends on its own facts, and it should not be assumed.</p>
+
+<h2>Do not treat a writ as a shortcut</h2>
+<p>The forty-five day period for a <a href="section-17-drt-application.html">Section 17 application</a> should be checked at once. A pending writ petition should not be assumed to protect that period. Where the Tribunal remedy is still available, filing there is usually the safer course.</p>
+
+<h2>The Act itself</h2>
+<p>The Supreme Court considered the validity of the Act in <i>Mardia Chemicals v. Union of India</i> (2004) 4 SCC 311, and recognised the borrower's right to object to a Section 13(2) notice and the creditor's duty to reply with reasons.</p>
+
+<h2>Our work at this stage</h2>
+<p>We assess whether a writ petition before the High Court of Karnataka is available, or whether a Section 17 application is the better course, and prepare the matter accordingly. See also our article on <a href="blog/2026-10-08-high-court-writ-sarfaesi.html">High Court writ petitions and SARFAESI</a>, and the page on <a href="section-18-drat-appeal.html">appeals before the DRAT</a>.</p>
+""",
+        "faqs": [
+            ("Can I go directly to the High Court against a SARFAESI notice or auction?",
+             "The High Court generally expects the statutory remedy before the DRT to be used first. Writs are entertained only in limited situations."),
+            ("Will a writ petition stop an auction?",
+             "Interim orders are discretionary. The High Court may direct the petitioner to the DRT instead."),
+            ("Does filing a writ extend the time for a Section 17 application?",
+             "That should not be assumed. The limitation position should be checked at once."),
+        ],
+    },
+    {
+        "slug": "lender-arc-enforcement-advisory",
+        "nav": "Lender and ARC enforcement advisory",
+        "title": "SARFAESI Enforcement Advisory for Banks, NBFCs and ARCs",
+        "h1": "Enforcement advisory for banks, NBFCs and asset reconstruction companies",
+        "desc": "Pre-conditions for SARFAESI action, notice and sale compliance, joint financiers under Section 13(9), ARCs and priority of secured creditors.",
+        "lead": "A secured creditor acts without a court order, so the notice and sale steps have to be right the first time.",
+        "body": """
+<h2>Pre-conditions</h2>
+<p>The Act applies to a secured creditor enforcing a security interest in respect of a financial asset. The account must be classified as a non-performing asset before a Section 13(2) notice is issued. See <a href="blog/2026-10-11-secured-creditor-financial-asset.html">secured creditor and financial asset</a> and <a href="blog/2026-10-02-npa-classification-section-13-2-notice.html">NPA classification and the notice</a>.</p>
+
+<h2>The enforcement steps</h2>
+<ul class="ticks">
+<li>A Section 13(2) notice giving the details required by Section 13(3)</li>
+<li>Consideration of any objection, with reasons communicated under Section 13(3A) if it is not accepted</li>
+<li>Measures under Section 13(4) after the sixty-day period</li>
+<li>Possession in the manner provided in Rule 8, with assistance of the Magistrate under Section 14 where needed</li>
+<li>Sale in accordance with Rules 8 and 9</li>
+</ul>
+<p>Departures from Rules 8 and 9 are a frequent ground of challenge, and the Supreme Court in <i>Mathew Varghese v. M. Amritha Kumar</i> (2014) 5 SCC 610 held that they must be complied with. A review of the notice and the sale notice before they are issued is usually less costly than defending them afterwards.</p>
+
+<h2>Joint financiers</h2>
+<p>Where more than one secured creditor has financed a borrower, Section 13(9) provides that no secured creditor may exercise its rights unless creditors representing not less than sixty per cent in value of the amount outstanding agree. See <a href="blog/2026-10-06-section-13-9-joint-financiers-consortium.html">joint financiers under Section 13(9)</a> and <a href="blog/2026-10-13-consortium-multiple-bank-lending-enforcement.html">consortium lending and enforcement</a>.</p>
+
+<h2>Asset reconstruction companies</h2>
+<p>An asset reconstruction company that acquires a financial asset can enforce the security under the Act. See <a href="blog/2026-10-08-asset-reconstruction-companies-arcs-sarfaesi.html">the role of ARCs</a>.</p>
+
+<h2>Registration and priority</h2>
+<p>Security interests can be registered with the Central Registry, and Section 26E deals with the priority of secured creditors' dues after registration. Check the current text of the Act for its scope. See <a href="blog/2026-10-07-priority-secured-creditors-central-registry-section-26e.html">priority and Section 26E</a>.</p>
+
+<h2>Recovery routes together</h2>
+<p>SARFAESI enforcement and a recovery application under the RDB Act operate together. See <a href="sarfaesi-and-rdb-act-recovery-routes.html">SARFAESI and the RDB Act</a>.</p>
+
+<h2>Our work for lenders</h2>
+<p>We review notices and sale notices, advise on compliance with the Rules and on joint-financier arrangements, and appear in proceedings before the DRT, the DRAT and the High Court. On the movable assets side, see <a href="blog/2026-10-05-sale-of-movable-secured-assets-rules.html">sale of movable secured assets</a>.</p>
+""",
+        "faqs": [
+            ("What must be in place before a Section 13(2) notice is issued?",
+             "The creditor must be a secured creditor, there must be a security interest in a financial asset, and the account must have been classified as a non-performing asset."),
+            ("What is the effect of non-compliance with Rules 8 and 9?",
+             "The Supreme Court has held that Rules 8 and 9 must be complied with. A sale that departs from them is open to challenge."),
+            ("Do joint financiers have to agree before enforcing?",
+             "Under Section 13(9), the secured creditors representing not less than sixty per cent in value of the amount outstanding must agree. Check the current text of the Act."),
+        ],
+    },
+    {
+        "slug": "sarfaesi-and-rdb-act-recovery-routes",
+        "nav": "SARFAESI and the RDB Act",
+        "title": "SARFAESI Act and RDB Act: Recovery Routes Explained",
+        "h1": "SARFAESI and the RDB Act: how the two recovery routes work together",
+        "desc": "How a lender can use SARFAESI enforcement and a Debts Recovery Tribunal application together, and what that means for borrowers and guarantors.",
+        "lead": "A lender has two statutory routes to recover secured dues. Knowing how they fit together helps both sides plan.",
+        "body": """
+<h2>Two routes</h2>
+<p>Under the SARFAESI Act, a secured creditor can take measures against the secured asset after a notice, without first obtaining an order from a court or tribunal. Under the Recovery of Debts and Bankruptcy Act, 1993, a bank or financial institution can apply to the Debts Recovery Tribunal for recovery of debts above a threshold notified by the Government. The threshold changes from time to time, so check the current notification.</p>
+
+<h2>They operate together</h2>
+<p>In <i>Transcore v. Union of India</i> (2008) 1 SCC 125, the Supreme Court held that the SARFAESI Act and the RDB Act operate together. See <a href="blog/2026-10-10-sarfaesi-vs-rdb-act-which-route.html">SARFAESI or the RDB Act: which route</a>.</p>
+
+<h2>Shortfall after a sale</h2>
+<p>Where the sale proceeds of the secured asset do not clear the dues, Section 13(10) allows the secured creditor to apply to the DRT or a competent court for recovery of the balance from the borrower.</p>
+
+<h2>Civil courts</h2>
+<p>Section 34 bars a civil court from entertaining proceedings in respect of a matter that the DRT or the Appellate Tribunal is empowered to decide under the Act. The borrower's remedy lies before the Tribunal under <a href="section-17-drt-application.html">Section 17</a>.</p>
+
+<h2>What this means for borrowers and guarantors</h2>
+<p>Proceedings may be running under both Acts at the same time, each with its own time limits. The forty-five day period for a Section 17 application is separate from any recovery application. A response plan should take both into account. See also <a href="guarantors-sarfaesi-enforcement.html">guarantors and SARFAESI</a>.</p>
+""",
+        "faqs": [
+            ("Can a bank use both SARFAESI and the RDB Act?",
+             "The Supreme Court held in Transcore v. Union of India that the two Acts operate together."),
+            ("Can I file a civil suit to stop SARFAESI action?",
+             "Section 34 bars civil courts from deciding matters that the DRT or the Appellate Tribunal can decide under the Act. The remedy is a Section 17 application."),
+            ("What happens if the sale proceeds fall short of the dues?",
+             "Section 13(10) allows the secured creditor to apply to the DRT or a competent court for the balance."),
+        ],
+    },
+    {
+        "slug": "tenants-occupants-sarfaesi-possession",
+        "nav": "Tenants and occupants",
+        "title": "Tenants and Occupants in a SARFAESI Possession",
+        "h1": "Tenants and occupants facing SARFAESI possession",
+        "desc": "Rights of tenants, lessees and other occupants when a bank takes possession of a secured property under SARFAESI, and the remedies available to them.",
+        "lead": "Possession proceedings often reach people who did not borrow: tenants, occupants and family members.",
+        "body": """
+<h2>Who is affected</h2>
+<p>When a secured creditor takes possession of a property, the people in occupation may include tenants, lessees, family members and co-owners. They may not have received the notices addressed to the borrower.</p>
+
+<h2>Lessees' rights</h2>
+<p>The Supreme Court considered the position of lessees in <i>Harshad Govardhan Sondagar v. International Asset Reconstruction Co.</i> (2014) 6 SCC 1. Whether a tenant is protected generally depends on when and how the tenancy was created, on its terms, and on whether it is valid as against the secured creditor. Useful papers include:</p>
+<ul class="ticks">
+<li>The lease or rent agreement and any registration</li>
+<li>Rent receipts or bank records of payment</li>
+<li>Evidence of the date from which the occupant has been in possession</li>
+<li>Any consent or correspondence involving the lender</li>
+</ul>
+
+<h2>Remedies</h2>
+<p>Section 17 allows any person, including a borrower, aggrieved by a measure under Section 13(4) to apply to the Debts Recovery Tribunal, ordinarily within forty-five days. See <a href="section-17-drt-application.html">Section 17 applications</a>. Where the creditor seeks the Magistrate's help to take possession, see <a href="section-14-possession-order.html">Section 14 possession orders</a>.</p>
+
+<h2>Practical points</h2>
+<ul class="ticks">
+<li>Do not ignore a notice or an order. Note which measure has been taken and its date</li>
+<li>Keep copies of every document and every communication</li>
+<li>Seek advice early, because the forty-five day period runs from the measure</li>
+</ul>
+<p>Our articles on <a href="blog/2026-10-09-tenants-occupants-sarfaesi-possession.html">tenants and occupants in a SARFAESI possession</a> and the <a href="blog/2026-10-03-possession-notice-rule-8-symbolic-physical.html">possession notice under Rule 8</a> have more detail.</p>
+""",
+        "faqs": [
+            ("Can a bank evict a tenant under SARFAESI?",
+             "That depends on whether the tenancy is valid as against the secured creditor and on the order obtained. Taking physical possession follows the process in the Rules or an order under Section 14."),
+            ("Can a tenant apply to the DRT?",
+             "Section 17 allows any person aggrieved by a measure under Section 13(4) to apply, ordinarily within forty-five days."),
+            ("What if I am a family member or co-owner living in the property?",
+             "Your rights depend on your title and the documents. Do not ignore notices addressed to the household."),
         ],
     },
 ]

@@ -171,10 +171,16 @@ def page_services():
         ("Writ jurisdiction of the High Court", "Writ petitions in the limited situations where the High Court entertains challenges despite the alternative remedy before the DRT."),
         ("Settlements, OTS and redemption", "Negotiating one-time settlements and restructuring, and advising on the borrower's right of redemption."),
         ("Purchaser and lender advisory", "Due diligence before bidding, title and encumbrance checks, and enforcement strategy and compliance for lenders."),
+        ("Guarantors and third-party mortgagors", "Notices, objections and remedies for persons who gave a guarantee or mortgaged property for another's loan."),
+        ("Tenants and occupants", "Advice to tenants, lessees and other occupants affected by a possession under the Act."),
+        ("SARFAESI and the RDB Act", "How enforcement under the SARFAESI Act and recovery applications before the DRT operate together."),
     ]
     # Cards that have a dedicated page link to it (matched by position in the list above).
     page_for = {0: "section-13-2-notice-reply", 1: "section-17-drt-application", 2: "section-18-drat-appeal",
-                3: "section-14-possession-order", 4: "sarfaesi-auction-disputes", 6: "one-time-settlement-redemption"}
+                3: "section-14-possession-order", 4: "sarfaesi-auction-disputes", 5: "high-court-writ-sarfaesi",
+                6: "one-time-settlement-redemption", 7: "lender-arc-enforcement-advisory",
+                8: "guarantors-sarfaesi-enforcement", 9: "tenants-occupants-sarfaesi-possession",
+                10: "sarfaesi-and-rdb-act-recovery-routes"}
     cards = "".join(
         f'<div class="card"><h3>{t}</h3><p>{d}</p>'
         + (f'<p><a href="{page_for[i]}.html">Read more →</a></p>' if i in page_for else "")
