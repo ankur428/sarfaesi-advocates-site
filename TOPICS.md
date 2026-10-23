@@ -13,7 +13,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ## Backlog
 
 ### Notices (practice page: /section-13-2-notice-reply)
-- What to do in the first week after receiving a SARFAESI notice | sarfaesi notice what to do | section-13-2-notice-first-week | /section-13-2-notice-reply
 - Replying to a SARFAESI notice: what a good reply covers | sarfaesi notice reply | section-13-2-notice-reply-contents | /section-13-2-notice-reply
 - Common defects to look for in a Section 13(2) notice | defective sarfaesi notice | section-13-2-notice-common-defects | /section-13-2-notice-reply
 - Joint borrowers and co-applicants: who gets the SARFAESI notice | sarfaesi notice joint borrowers | section-13-2-notice-joint-borrowers | /section-13-2-notice-reply
@@ -93,3 +92,4 @@ How to use this file (see CLAUDE.md for the full rules):
 Original backlog, all published: SARFAESI vs RDB Act; secured creditor and financial asset; NPA classification; possession notice and Rule 8; guarantors; sale of movable assets; Section 13(9); priority and Section 26E; ARCs; tenants and occupants; stamp duty on the sale certificate; reserve price disputes; delay and limitation; consortium lending; interim relief under Section 17; costs under Section 17(3); home loan default; MSME restructuring; e-auction pitfalls; surplus sale proceeds.
 
 Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Transcore, Harshad and Satyawati cases; civil court bar (Section 34); Section 13(3), 13(4)(a)-(d), 13(6), 13(8), 13(10), 13(13); Section 31 exemptions; objecting to a Section 13(2) notice; documents to keep ready; who can file a Section 17 application.
+- 2026-11-09: What to do in the first week after receiving a SARFAESI notice | sarfaesi notice what to do | section-13-2-notice-first-week | /section-13-2-notice-reply
