@@ -13,7 +13,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ## Backlog
 
 ### Notices (practice page: /section-13-2-notice-reply)
-- Common defects to look for in a Section 13(2) notice | defective sarfaesi notice | section-13-2-notice-common-defects | /section-13-2-notice-reply
 - Joint borrowers and co-applicants: who gets the SARFAESI notice | sarfaesi notice joint borrowers | section-13-2-notice-joint-borrowers | /section-13-2-notice-reply
 - Mistakes borrowers make after a SARFAESI notice | sarfaesi notice mistakes | section-13-2-notice-common-mistakes | /section-13-2-notice-reply
 - Myths about SARFAESI: can a bank sell your property without telling you | sarfaesi myths | section-13-2-notice-myths-bank-sale | /section-13-2-notice-reply
@@ -93,3 +92,4 @@ Original backlog, all published: SARFAESI vs RDB Act; secured creditor and finan
 Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Transcore, Harshad and Satyawati cases; civil court bar (Section 34); Section 13(3), 13(4)(a)-(d), 13(6), 13(8), 13(10), 13(13); Section 31 exemptions; objecting to a Section 13(2) notice; documents to keep ready; who can file a Section 17 application.
 - 2026-11-09: What to do in the first week after receiving a SARFAESI notice | sarfaesi notice what to do | section-13-2-notice-first-week | /section-13-2-notice-reply
 - 2026-11-10: Replying to a SARFAESI notice: what a good reply covers | sarfaesi notice reply | section-13-2-notice-reply-contents | /section-13-2-notice-reply
+- 2026-11-11: - Common defects to look for in a Section 13(2) notice | defective sarfaesi notice | section-13-2-notice-common-defects | /section-13-2-notice-reply
