@@ -13,7 +13,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ## Backlog
 
 ### Notices (practice page: /section-13-2-notice-reply)
-- Mistakes borrowers make after a SARFAESI notice | sarfaesi notice mistakes | section-13-2-notice-common-mistakes | /section-13-2-notice-reply
 - Myths about SARFAESI: can a bank sell your property without telling you | sarfaesi myths | section-13-2-notice-myths-bank-sale | /section-13-2-notice-reply
 
 ### Section 17 applications (/section-17-drt-application)
@@ -93,3 +92,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-11-10: Replying to a SARFAESI notice: what a good reply covers | sarfaesi notice reply | section-13-2-notice-reply-contents | /section-13-2-notice-reply
 - 2026-11-11: - Common defects to look for in a Section 13(2) notice | defective sarfaesi notice | section-13-2-notice-common-defects | /section-13-2-notice-reply
 - 2026-11-12: - Joint borrowers and co-applicants: who gets the SARFAESI notice | sarfaesi notice joint borrowers | section-13-2-notice-joint-borrowers | /section-13-2-notice-reply
+- 2026-11-13: Mistakes borrowers make after a SARFAESI notice | sarfaesi notice mistakes | section-13-2-notice-common-mistakes | /section-13-2-notice-reply
