@@ -15,7 +15,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Notices (practice page: /section-13-2-notice-reply)
 
 ### Section 17 applications (/section-17-drt-application)
-- Settling while a Section 17 application is pending | settlement during section 17 application | section-17-settlement-while-pending | /one-time-settlement-redemption
 - Setting aside a SARFAESI sale: what the DRT can order | set aside sarfaesi sale | section-17-set-aside-sale-powers | /section-17-drt-application
 
 ### Section 18 appeals (/section-18-drat-appeal)
@@ -93,3 +92,5 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-11-16: Section 17 application: documents checklist | section 17 application documents | section-17-application-documents-checklist | /section-17-drt-application
 - 2026-11-17: Grounds to challenge SARFAESI action before the DRT | grounds to challenge sarfaesi action | section-17-grounds-to-challenge | /section-17-drt-application
 - 2026-11-18: The bank's reply in a Section 17 application: what borrowers should expect | section 17 bank reply | section-17-bank-reply-what-to-expect | /section-17-drt-application
+
+- 2026-11-19: Settling while a Section 17 application is pending | settlement during section 17 application | section-17-settlement-while-pending | /one-time-settlement-redemption
