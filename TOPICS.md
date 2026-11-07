@@ -17,7 +17,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Section 17 applications (/section-17-drt-application)
 
 ### Section 18 appeals (/section-18-drat-appeal)
-- Thirty days to appeal: counting the period from receipt of the DRT order | drat appeal limitation 30 days | section-18-appeal-thirty-days | /section-18-drat-appeal
 
 ### Possession (/section-14-possession-order)
 - What a bank must file in a Section 14 application | section 14 sarfaesi application | section-14-application-contents | /section-14-possession-order
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-11-21: DRAT appeal under Section 18: documents and grounds checklist | section 18 appeal drat | section-18-drat-appeal-checklist | /section-18-drat-appeal
 - 2026-11-22: Pre-deposit under Section 18: how the 50% is worked out, with an example | section 18 pre-deposit calculation | section-18-pre-deposit-calculation | /section-18-drat-appeal
 - 2026-11-23: Reducing the Section 18 pre-deposit to 25%: what to put before the DRAT | reduce pre-deposit drat | section-18-pre-deposit-reduction | /section-18-drat-appeal
+- 2026-11-24: Thirty days to appeal: counting the period from receipt of the DRT order | drat appeal limitation 30 days | section-18-appeal-thirty-days | /section-18-drat-appeal
