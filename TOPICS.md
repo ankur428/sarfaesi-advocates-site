@@ -19,7 +19,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Section 18 appeals (/section-18-drat-appeal)
 
 ### Possession (/section-14-possession-order)
-- Possession under Section 13(4)(a) versus Section 14: how they differ | section 13(4)(a) vs section 14 | section-14-vs-13-4-a-possession | /section-14-possession-order
 
 ### Auctions (/sarfaesi-auction-disputes)
 - SARFAESI auction timeline: from sale notice to sale certificate | sarfaesi auction timeline | sarfaesi-auction-timeline | /sarfaesi-auction-disputes
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-11-24: Thirty days to appeal: counting the period from receipt of the DRT order | drat appeal limitation 30 days | section-18-appeal-thirty-days | /section-18-drat-appeal
 - 2026-11-25: What a bank must file in a Section 14 application | section 14 sarfaesi application | section-14-application-contents | /section-14-possession-order
 - 2026-11-26: Section 14 order received: options for the borrower and occupants | section 14 order what to do | section-14-order-remedies | /section-14-possession-order
+- 2026-11-27: Possession under Section 13(4)(a) versus Section 14: how they differ | section 13(4)(a) vs section 14 | section-14-vs-13-4-a-possession | /section-14-possession-order
