@@ -21,7 +21,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Possession (/section-14-possession-order)
 
 ### Auctions (/sarfaesi-auction-disputes)
-- Methods of sale under Rule 8: auction, tender, quotations and private treaty | sarfaesi sale methods | sale-of-secured-asset-methods-rule-8 | /sarfaesi-auction-disputes
 - Earnest money in a SARFAESI auction: what it is and when it is refunded | sarfaesi auction emd refund | auction-earnest-money-refund | /sarfaesi-auction-disputes
 - Sale certificate under Rule 9: what it is and why it matters | sarfaesi sale certificate | auction-sale-certificate-rule-9 | /sarfaesi-auction-disputes
 - When a bank auction fails: what happens next | bank auction failed re-auction | auction-fails-reauction | /sarfaesi-auction-disputes
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-11-26: Section 14 order received: options for the borrower and occupants | section 14 order what to do | section-14-order-remedies | /section-14-possession-order
 - 2026-11-27: Possession under Section 13(4)(a) versus Section 14: how they differ | section 13(4)(a) vs section 14 | section-14-vs-13-4-a-possession | /section-14-possession-order
 - 2026-11-28: SARFAESI auction timeline: from sale notice to sale certificate | sarfaesi auction timeline | sarfaesi-auction-timeline | /sarfaesi-auction-disputes
+- 2026-11-29: Methods of sale under Rule 8: auction, tender, quotations and private treaty | sarfaesi sale methods | sale-of-secured-asset-methods-rule-8 | /sarfaesi-auction-disputes
