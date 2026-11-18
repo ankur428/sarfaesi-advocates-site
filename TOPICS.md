@@ -21,7 +21,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Possession (/section-14-possession-order)
 
 ### Auctions (/sarfaesi-auction-disputes)
-- Title search and encumbrance checks before bidding | bank auction property title check | purchaser-title-search-encumbrance | /sarfaesi-auction-disputes
 
 ### Settlement and redemption (/one-time-settlement-redemption)
 - Preparing to negotiate a one-time settlement with a bank | one time settlement negotiation | settlement-negotiation-preparation | /one-time-settlement-redemption
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-02: When a bank auction fails: what happens next | bank auction failed re-auction | auction-fails-reauction | /sarfaesi-auction-disputes
 - 2026-12-03: Purchaser defaults on the balance payment: forfeiture under Rule 9 | auction default forfeiture | purchaser-default-forfeiture-rule-9 | /sarfaesi-auction-disputes
 - 2026-12-04: "As is where is": what it means in a bank auction | as is where is bank auction | auction-as-is-where-is | /sarfaesi-auction-disputes
+- 2026-12-05: Title search and encumbrance checks before bidding | bank auction property title check | purchaser-title-search-encumbrance | /sarfaesi-auction-disputes
