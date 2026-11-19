@@ -23,7 +23,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Auctions (/sarfaesi-auction-disputes)
 
 ### Settlement and redemption (/one-time-settlement-redemption)
-- Preparing to negotiate a one-time settlement with a bank | one time settlement negotiation | settlement-negotiation-preparation | /one-time-settlement-redemption
 - Settlement letter: what to insist on in writing | one time settlement letter | settlement-letter-in-writing | /one-time-settlement-redemption
 - Redemption or one-time settlement: which route fits | redemption vs settlement | redemption-vs-settlement | /one-time-settlement-redemption
 - After settlement: no-dues certificate and return of title documents | no dues certificate after settlement | settlement-no-dues-title-documents | /one-time-settlement-redemption
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-03: Purchaser defaults on the balance payment: forfeiture under Rule 9 | auction default forfeiture | purchaser-default-forfeiture-rule-9 | /sarfaesi-auction-disputes
 - 2026-12-04: "As is where is": what it means in a bank auction | as is where is bank auction | auction-as-is-where-is | /sarfaesi-auction-disputes
 - 2026-12-05: Title search and encumbrance checks before bidding | bank auction property title check | purchaser-title-search-encumbrance | /sarfaesi-auction-disputes
+- 2026-12-06: Preparing to negotiate a one-time settlement with a bank | one time settlement negotiation | settlement-negotiation-preparation | /one-time-settlement-redemption
