@@ -23,7 +23,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Auctions (/sarfaesi-auction-disputes)
 
 ### Settlement and redemption (/one-time-settlement-redemption)
-- After settlement: no-dues certificate and return of title documents | no dues certificate after settlement | settlement-no-dues-title-documents | /one-time-settlement-redemption
 
 ### Guarantors and mortgagors (/guarantors-sarfaesi-enforcement)
 - Director as personal guarantor: exposure under SARFAESI | personal guarantee sarfaesi director | guarantor-director-personal-guarantee | /guarantors-sarfaesi-enforcement
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-06: Preparing to negotiate a one-time settlement with a bank | one time settlement negotiation | settlement-negotiation-preparation | /one-time-settlement-redemption
 - 2026-12-07: Settlement letter: what to insist on in writing | one time settlement letter | settlement-letter-in-writing | /one-time-settlement-redemption
 - 2026-12-08: Redemption or one-time settlement: which route fits | redemption vs settlement | redemption-vs-settlement | /one-time-settlement-redemption
+- 2026-12-09: After settlement: no-dues certificate and return of title documents | no dues certificate after settlement | settlement-no-dues-title-documents | /one-time-settlement-redemption
