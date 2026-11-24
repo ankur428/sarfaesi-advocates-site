@@ -25,7 +25,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Settlement and redemption (/one-time-settlement-redemption)
 
 ### Guarantors and mortgagors (/guarantors-sarfaesi-enforcement)
-- Third-party mortgage: can a bank sell your property for someone else's loan | third party mortgage sarfaesi | guarantor-third-party-mortgage | /guarantors-sarfaesi-enforcement
 - Guarantor's position after the borrower settles | guarantor settlement borrower | guarantor-after-borrower-settlement | /guarantors-sarfaesi-enforcement
 - Guarantor discharge when loan terms are varied (Section 133, Contract Act) | guarantor discharge variation | guarantor-discharge-variation-section-133 | /guarantors-sarfaesi-enforcement
 
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-08: Redemption or one-time settlement: which route fits | redemption vs settlement | redemption-vs-settlement | /one-time-settlement-redemption
 - 2026-12-09: After settlement: no-dues certificate and return of title documents | no dues certificate after settlement | settlement-no-dues-title-documents | /one-time-settlement-redemption
 - 2026-12-10: Director as personal guarantor: exposure under SARFAESI | personal guarantee sarfaesi director | guarantor-director-personal-guarantee | /guarantors-sarfaesi-enforcement
+- 2026-12-11: Third-party mortgage: can a bank sell your property for someone else's loan | third party mortgage sarfaesi | guarantor-third-party-mortgage | /guarantors-sarfaesi-enforcement
