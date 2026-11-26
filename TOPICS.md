@@ -25,7 +25,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Settlement and redemption (/one-time-settlement-redemption)
 
 ### Guarantors and mortgagors (/guarantors-sarfaesi-enforcement)
-- Guarantor discharge when loan terms are varied (Section 133, Contract Act) | guarantor discharge variation | guarantor-discharge-variation-section-133 | /guarantors-sarfaesi-enforcement
 
 ### High Court writs (/high-court-writ-sarfaesi)
 - When the High Court hears a writ against SARFAESI action | writ petition sarfaesi high court | writ-when-high-court-hears | /high-court-writ-sarfaesi
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-10: Director as personal guarantor: exposure under SARFAESI | personal guarantee sarfaesi director | guarantor-director-personal-guarantee | /guarantors-sarfaesi-enforcement
 - 2026-12-11: Third-party mortgage: can a bank sell your property for someone else's loan | third party mortgage sarfaesi | guarantor-third-party-mortgage | /guarantors-sarfaesi-enforcement
 - 2026-12-12: Guarantor's position after the borrower settles | guarantor settlement borrower | guarantor-after-borrower-settlement | /guarantors-sarfaesi-enforcement
+- 2026-12-13: Guarantor discharge when loan terms are varied (Section 133, Contract Act) | guarantor discharge variation | guarantor-discharge-variation-section-133 | /guarantors-sarfaesi-enforcement
