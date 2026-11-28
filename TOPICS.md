@@ -27,7 +27,6 @@ How to use this file (see CLAUDE.md for the full rules):
 ### Guarantors and mortgagors (/guarantors-sarfaesi-enforcement)
 
 ### High Court writs (/high-court-writ-sarfaesi)
-- Writ petition or Section 17 application: choosing the forum | writ vs section 17 | writ-vs-section-17-choosing-forum | /high-court-writ-sarfaesi
 
 ### Lenders and ARCs (/lender-arc-enforcement-advisory)
 - Pre-notice checklist for banks before a Section 13(2) notice | sarfaesi checklist for banks | npa-pre-notice-checklist-bank | /lender-arc-enforcement-advisory
@@ -94,3 +93,4 @@ Other topics already published (see `posts/`): the Mardia, Mathew Varghese, Tran
 - 2026-12-12: Guarantor's position after the borrower settles | guarantor settlement borrower | guarantor-after-borrower-settlement | /guarantors-sarfaesi-enforcement
 - 2026-12-13: Guarantor discharge when loan terms are varied (Section 133, Contract Act) | guarantor discharge variation | guarantor-discharge-variation-section-133 | /guarantors-sarfaesi-enforcement
 - 2026-12-14: When the High Court hears a writ against SARFAESI action | writ petition sarfaesi high court | writ-when-high-court-hears | /high-court-writ-sarfaesi
+- 2026-12-15: Writ petition or Section 17 application: choosing the forum | writ vs section 17 | writ-vs-section-17-choosing-forum | /high-court-writ-sarfaesi
